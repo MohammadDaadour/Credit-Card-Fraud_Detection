@@ -5,6 +5,7 @@ import joblib
 from sklearn import model_selection
 import xgboost as xgb
 
+
 THRESHOLD = 0.3
 modelRF = joblib.load("fraud_model_RF.pkl")
 modelXG = joblib.load("fraud_model.pkl")
@@ -22,6 +23,10 @@ feature_names = df_features.columns.tolist()
 
 def random_fill():
     row = fraudulent_entries.sample(1).iloc[0].tolist()
+    return row
+
+def random_fillNf():
+    row = df_features.sample(1).iloc[0].tolist()
     return row
 
 def predict(model_choice,Time, V1, V2, V3, V4, V5,V6,V7,V8,V9,V10,V11,V12,V13,V14,V15,V16,V17,V18,V19,V20,V21,V22,V23,V24,V25,V26,V27,V28,Amount):
@@ -60,12 +65,16 @@ def predict(model_choice,Time, V1, V2, V3, V4, V5,V6,V7,V8,V9,V10,V11,V12,V13,V1
 with gr.Blocks() as demo:
     gr.Markdown("# Fraud Detection Project")
     inputs = [gr.Number(label=name) for name in feature_names]
-    model_choosen = gr.Dropdown(["CatBoost", "XG[Better]","RandomF(bestRecall)"], label="Select Model", value="RF[BetterF1]")
-    fill_btn = gr.Button("🎲")
+    model_choosen = gr.Dropdown(["CatBoost", "XG[Better]","RandomF(bestRecall)"], label="Select Model", value="XG[Better]")
+
+    fill_btnF = gr.Button("fill with a fraud")
+    fill_btnNF = gr.Button("fill with a Non-fraud")
+
     predict_btn = gr.Button("Predict")
     #inputs.append(gr.Dropdown(["RF[BetterF1]", "XG[HighPrecision]"], label="Select Model", value="RF[BetterF1]"))
     output = gr.Textbox(label="Prediction")
-    fill_btn.click(fn=random_fill, inputs=None, outputs=inputs)
+    fill_btnF.click(fn=random_fill, inputs=None, outputs=inputs)
+    fill_btnNF.click(fn=random_fillNf, inputs=None, outputs=inputs)
     predict_btn.click(fn=predict, inputs=[model_choosen ]+  inputs  , outputs=output)
 
 demo.launch(server_name="0.0.0.0", server_port=7860)
