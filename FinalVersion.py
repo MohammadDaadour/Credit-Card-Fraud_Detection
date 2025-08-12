@@ -68,5 +68,5 @@ with gr.Blocks() as demo:
     fill_btn.click(fn=random_fill, inputs=None, outputs=inputs)
     predict_btn.click(fn=predict, inputs=[model_choosen ]+  inputs  , outputs=output)
 
-demo.launch()
-# rf better precesion
+demo.launch(server_name="0.0.0.0", server_port=7860)
+
