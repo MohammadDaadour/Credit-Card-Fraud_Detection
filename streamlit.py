@@ -12,7 +12,7 @@ st.session_state.modelRf = joblib.load("fraud_model_RF.pkl")
 st.session_state.modelCat = joblib.load("fraud_model_Cat.pkl")
 st.session_state.scaler = joblib.load("scaler.pkl")
 
-df = pd.read_csv("/Users/abdullahyehia/Desktop/data/creditcard.csv")  # already downloaded
+df = pd.read_csv("creditcard_small.csv")  # already downloaded
 fraudulent_entries = df[df['Class'] == 1]
 fraudulent_entries = fraudulent_entries.drop(columns=["Class"], errors="ignore")
 df_features = df.drop(columns=["Class"], errors="ignore")
