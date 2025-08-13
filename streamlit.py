@@ -6,25 +6,27 @@ from sklearn import model_selection
 import xgboost as xgb
 
 
-#if "model" not in st.session_state:
+#importing model and scaler in session_state to be saved when the page reloads
 st.session_state.model = joblib.load("fraud_model.pkl")
 st.session_state.modelRf = joblib.load("fraud_model_RF.pkl")
 st.session_state.modelCat = joblib.load("fraud_model_Cat.pkl")
 st.session_state.scaler = joblib.load("scaler.pkl")
 
-df = pd.read_csv("creditcard_small.csv")  # already downloaded
+#reading data and getting features names and values.
+df = pd.read_csv("creditcard_small.csv")  
 fraudulent_entries = df[df['Class'] == 1]
 fraudulent_entries = fraudulent_entries.drop(columns=["Class"], errors="ignore")
 df_features = df.drop(columns=["Class"], errors="ignore")
 feature_names = df_features.columns.tolist()
 
+#initiallizng inputs in session_state if its not there
 if "inputs" not in st.session_state:
     st.session_state.inputs = {f: None for f in feature_names}
 
 
-st.title("Fraud detection app")
-#st.write("Fraud detection app")
 
+st.title("Fraud detection app")
+#side bbar with some links
 with st.sidebar :
     st.title("sources:" )
     url = "https://nilsonreport.com/articles/card-fraud-losses-worldwide-in-2023/#:~:text=Fraud%20losses%20incurred%20by%20card,losses%20were%20%2433.45%20billion%20worldwide."
@@ -38,7 +40,7 @@ with st.sidebar :
 
 
 st.header(" Credit Card Fraud Overview")
-
+#columns to show some stats
 col1, col2, col3 = st.columns(3,gap='small',)
 
 with col1:
@@ -53,11 +55,12 @@ with col3:
     col3.metric("Global Card Fraud Losses (2023)", " $33.45")
     st.caption('billion worldwide')
 
+#two randomizing buttons.
 left, middle= st.columns(2)
-
 randomizbtn = left.button("Randomize with fraude", type="primary")
 if randomizbtn:
     rand_row = fraudulent_entries.sample(1).iloc[0]
+    #filling inputs from data
     for f in feature_names:
         st.session_state.inputs[f] = float(rand_row[f])
 
@@ -73,10 +76,9 @@ if randomizNFbtn:
 
 
 
-
+#creating the form and all inputs
 with st.form("Data input"):
     st.write("Enter all the features")
-    # Dropdown for model choice
     model_choice = st.selectbox(
         "Choose Model",
         options=["Catboost", "Random Forest", "XGBoost"]
@@ -87,7 +89,6 @@ with st.form("Data input"):
             key=f, 
             value=st.session_state.inputs[f] if st.session_state.inputs[f] is not None else 0.0
         )
-    # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
         #st.write(f"Time: {st.session_state.Time}")
@@ -130,9 +131,5 @@ with st.form("Data input"):
             output='Fraud'
             color= "red"
         st.markdown(f"<p style='font-size:30px; color:{color}; text-align: center;'>Prediction: {output}</p>", unsafe_allow_html=True)
-        #st.success(f"Prediction: {output}")
 
 
-#st.session_state.model = joblib.load("fraud_model.pkl")
-    #st.session_state.modelRf = joblib.load("fraud_model_RF.pkl")
-    #st.session_state.modelCat
