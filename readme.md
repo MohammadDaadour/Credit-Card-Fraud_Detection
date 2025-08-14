@@ -12,8 +12,21 @@ Fraud drains billions of dollars each year , it’s methods just keep getting be
 ---
 
 ## Project Structure:
-
-<pre> fraud-detector/ │── FinalVersion.py # Gradio app │── streamlit.py # Streamlit app │── requirements.txt # Python dependencies │── fraud_model.pkl # Trained ML XGBoost model │── scaler.pkl # Data scaler │── fraud_model_Cat # Trained ML CatBoost model │── fraud_model_RF # Trained ML Random Forest model │── preprocessing.ipynb # Training and preprocessing notebook │── creditcard_small.csv # Small dataset sample │── firstEditon.py # Gradio app demo │── README.md # Project documentation │── images/ # Images used </pre>
+```
+fraud-detector/
+│── FinalVersion.py # Gradio app
+│── streamlit.py # Streamlit app
+│── requirements.txt # Python dependencies
+│── fraud_model.pkl # Trained ML XGBoost model
+│── scaler.pkl # Data scaler
+│── fraud_model_Cat # Trained ML CatBoost model
+│── fraud_model_RF # Trained ML Random Forest model
+│── preprocessing.ipynb # Training and preprocessing notebook
+│── creditcard_small.csv # Small dataset sample
+│── firstEditon.py # Gradio app demo
+│── README.md # Project documentation
+│── images/ # Images used
+```
 ---
 
 ## Installation & Usage:
