@@ -38,7 +38,8 @@ To use docker access this repo :
 then pull it and run in your terminal:
 
 
-<pre> docker build -t fraud-detector . </pre>
+<pre> docker build -t USERNAME/fraud-detector .
+ </pre>
 ---
 
 ## Models Used and their performance:
