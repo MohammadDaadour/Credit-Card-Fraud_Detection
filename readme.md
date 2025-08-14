@@ -4,36 +4,24 @@ This project is a machine learning fraud detection model built and trained using
 Fraud drains billions of dollars each year , it’s methods just keep getting better and better. What if we can detect and stop these fraudulent transactions from even happening . Prevention is not just cheaper than recovery — it’s smarter.
 ---
 ## Features:
-1.Multiple models trained to get highest recall,precision , and f1-score.
+1. Multiple models trained to get highest recall,precision , and f1-score.
 
-2.Deployed on Streamlit and gradio.
+2. Deployed on Streamlit and gradio.
 
-3.A docker file is included to be built.
+3. A docker file is included to be built.
 ---
 
 ## Project Structure:
 
-fraud-detector/
-│── FinalVersion.py  # Gradio app
-│── streamlit.py  # streamlit app
-│── requirements.txt # Python dependencies
-│── fraud_model.pkl            # Trained ML XGBoost model
-│── scaler.pkl           # Data scaler
-│── fraud_model_Cat          # Trained ML CatBoost model 
-│── fraud_model_RF          # Trained ML Random Forrest model 
-│── preprocessing.ipynb # all training and preprocessing
-│── creditcard_small.csv  # a small sample
-│── firstEditon.py  # Gradio app demo
-│── README.md            # Project documentation
-│── images            # images used
+<pre> fraud-detector/ │── FinalVersion.py # Gradio app │── streamlit.py # Streamlit app │── requirements.txt # Python dependencies │── fraud_model.pkl # Trained ML XGBoost model │── scaler.pkl # Data scaler │── fraud_model_Cat # Trained ML CatBoost model │── fraud_model_RF # Trained ML Random Forest model │── preprocessing.ipynb # Training and preprocessing notebook │── creditcard_small.csv # Small dataset sample │── firstEditon.py # Gradio app demo │── README.md # Project documentation │── images/ # Images used </pre>
 ---
 
 ## Installation & Usage:
 
 1. Clone it:
 
-<pre> ```git clone https://github.com/MohammadDaadour/Credit-Card-Fraud_Detection
-cd fraud-detector ``` </pre>
+<pre> git clone https://github.com/MohammadDaadour/Credit-Card-Fraud_Detection
+cd fraud-detector  </pre>
 
 2. Streamlit app:
 
@@ -50,7 +38,7 @@ To use docker access this repo :
 then pull it and run in your terminal:
 
 
-<pre> ```docker build -t fraud-detector . ``` </pre>
+<pre> docker build -t fraud-detector . </pre>
 ---
 
 ## Models Used and their performance:
